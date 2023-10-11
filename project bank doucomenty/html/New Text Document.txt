@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <title>Bank Account Check</title>
+</head>
+<body>
+
+  <!-- Navbar start -->
+
+<nav class="container" >
+  
+    <p class="welcome">Login to get start</p>
+    <img class="logo" src="download.png" alt="logo">
+    
+      <form class="login" >
+        <input class="login-input login-input-username" type="text" placeholder="username">
+        <input class="login-input login-input-password" type="password" placeholder="password" >
+        <button class="login-btn btn">login  </button>
+      </form>
+    </div>
+  </div>
+</nav>
+<!--app-->
+<main class="app">
+  <!--balance-->
+  <div class="balance">
+    <div>
+      <p class="balance-title">Current balance</p>
+      <p class="balance-date">As of <span>29/07/2023</span></p>
+    </div>
+    <div>
+      <p class="balance-value">1000$</p>
+    </div>
+    
+  </div>
+  <!--momment-->
+  <div class="movments">
+    <div class="movments-row">
+      <div class="movments-type  movments-type-deposit">5 DEPOSIT</div>
+      <div class="movments-date">5 DAYS AGO</div>
+      <div class="movments-valu">1000$</div>
+    </div>
+    <div class="movments-row">
+      <div class="movments-type  movments-type-withdrwal">5 WITHDRWAL</div>
+      <div class="movments-date">5 DAYS AGO</div>
+      <div class="movments-valu">-400$</div>
+    </div>
+  </div>
+
+  <!--summarry-->
+  <div class="summarry">
+    <p class="summary-label">In</p>
+    <p class=" summary-value summary-value-in">1000$</p>
+      <p class="summary-label">Out</p>
+      <p class=" summary-value summary-value-out">1000$</p>
+        <p class="summary-label">Interest</p>
+        <p class=" summary-value summary-value-inter">1000$</p>
+        <button class="btn-sort">sort </button>
+  </div>
+  <!--transfer-->
+  <div class="operator operator-transfer">
+    <h2>Transfer money</h2>
+    <form class="form form-tranfer">
+      <input class="form-input form-input-to" type="text" >
+      <input class="form-input form-input-amount" type="text">
+      <button class="form-btn form-btn-tranfer">go</button> 
+      <label class="form-label">Transfer to</label>
+      <label class="form-label">amount</label>
+    </form>
+  </div>
+
+<!--loan-->
+
+<div class="operator operator-loan">
+  <h2>Request loan</h2>
+  <form class="form form-loan">
+    
+    <input class="form-input form-input-loan-amount" type="text">
+    <button class="form-btn form-btn-loan">go</button>
+    <label class="form-label form-label-loan">amount</label>
+  </form>
+</div>
+
+<!--close account-->
+
+<div class="operator operator-close">
+  <h2>close account</h2>
+  <form class="form form-close">
+    <input class="form-input form-input-username" type="text">
+    <input class="form-input form-input-pass" type="password">
+    <button class="form-btn form-btn-close">go</button>
+    <label class="form-label">confrim username</label>
+    <label class="form-label">confirm password</label>
+  </form>
+</div>
+
+<!--logout-->
+<p class="logout-timer">
+  we will be logged out in <span class="timer">2:00</span>
+</p>
+</main>
+
+
+<footer>
+  @copy; <span class="copyright-year">2023</span> ,
+  md.FAHIM SARKAR .ALL RIGHT RESEVER.
+</footer>
+
+
+
+  
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  <script src="main.js"></script>
+</body>
+</html>

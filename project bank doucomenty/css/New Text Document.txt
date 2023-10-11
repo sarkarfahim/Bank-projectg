@@ -1,0 +1,258 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+
+html{
+  font-size: 62.5%;
+}
+body{
+  font-family: Arial, Helvetica, sans-serif;
+    color: #444;
+    background: #f3f3f3;
+    height: 100vh;
+    padding: 2rem;
+}
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  
+}
+
+.welcome{
+  font-size: 2rem;
+  font-weight: 700;
+}
+.logo{
+  height: 5rem;
+}
+
+.login{
+display: flex;
+}
+.login-input{
+  padding: 10px;
+  margin: 5px;
+  border-radius: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  background: rgba(255, 255, 255,0.5);
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+.login-btn{
+  font-size: 1.5rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255,0.4);
+  border: none;
+  border-radius: 1.5rem;
+  cursor: pointer;
+}
+.app{
+  position: relative;
+  max-width: 100rem;
+  margin: 4rem auto;
+  display: grid;
+  grid-template-columns: 4fr 3fr ;
+  grid-template-rows: auto repeat(3, 15rem) auto;
+  gap: 2rem;
+
+  opacity: 0;
+  transition: all 0.4s;
+
+}
+
+.balance{
+  grid-column: 1 / span 2;
+  margin-top: 4rem;
+  display: flex;
+  align-items: flex-end;
+
+  justify-content: space-between;
+}
+
+.balance-title{
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: .8rem;
+}
+.balance-date{
+  font-size: 9px;
+  color: #9b9797;
+ 
+}
+
+.balance-value{
+  font-size: 2.5rem;
+  font-weight: 500;
+
+}
+
+.movments{
+  grid-row:2 /span 3;
+  
+  background:#fff;
+  overflow: scroll;
+}
+.movments-row{
+  padding: 2.25rem 4rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+.movments-type{
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #f7f3f3;
+  padding: 0.1rem 1rem;
+  border-radius: 10rem;
+  margin-right: 2rem;
+}
+.movments-date{
+    font-size: 1.1rem;
+    font-weight: 500;
+      color: #928d8d;
+}
+
+.movments-valu{
+  font-size: 1.7rem;
+  margin-left: auto;
+}
+.movments-type-deposit{
+  background-color: #00b79f;
+}
+
+.movments-type-withdrwal{
+  background-color: rgb(194, 43, 43);
+}
+
+.summarry{
+  grid-row: 5/6;
+  display: flex;
+  align-items: baseline;
+  padding: 0 0.3rem;
+  margin-top: 1rem;
+ 
+ 
+}
+
+.summary-label{
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+margin-right: 0.8rem;
+}
+
+.summary-value{
+  font-size: 2.2rem;
+  margin-right: 2rem;
+}
+.summary-value-in,
+.summary-value-inter{
+color: #00b79f;
+}
+.summary-value-out{
+  color: rgb(194, 43, 43);
+}
+.btn-sort{
+  margin-left: auto;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  background: none;
+  cursor: pointer;
+}
+
+.operator{
+  border-radius: 1rem;
+  padding: 3rem 4rem;
+  color: #333;
+}
+.operator-transfer{
+ background-color: #00b79f;
+}
+.operator-close{
+  background-color: rgb(185, 185, 37);
+}
+
+.operator-loan{
+  background-color:rgb(201, 78, 78) ;
+}
+.h2{
+  margin-bottom: 1.5rem;
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: #333;
+}
+.form{
+  display: grid;
+  grid-template-columns: 2.5fr 2.5fr 1fr;
+  grid-template-rows:auto auto;
+  gap: 0.4rem 1rem;
+}
+.form .form-loan{
+  grid-template-columns: 2.5fr 1fr 2.5fr;
+}
+
+.form-label-loan{
+  grid-row: 2;
+}
+.form-input{
+  width: 100%;
+  background-color: rgba(255, 255, 255,0.3);
+  font-family: inherit;
+  font-size: 1.5rem;
+  text-align: center;
+  color: #333;
+  padding: 0.3rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+} 
+.form-input:focus {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.form-label{
+  font-size: 1.2rem;
+  text-align:center ;
+}
+
+.form-btn {
+border-radius: 0.5rem;
+font-size: 1.8rem;
+background-color: #fff;
+cursor: pointer;
+transition: all 0.3s;
+}
+
+.form-btn:focus{
+  background-color: rgba(255, 255, 255,0.75);
+}
+
+.logout-timer{
+  padding: 0 0.3rem;
+  margin-top: 2rem;
+  text-align: right;
+  font-size: 1.3rem;
+}
+
+.timer{
+  font-weight: 600;
+
+}
+
+footer {
+  text-align: center;
+  font-size: 1.3rem;
+  color: #888;
+  padding-top: 3rem;
+}

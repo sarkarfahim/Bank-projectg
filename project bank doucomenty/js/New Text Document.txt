@@ -1,0 +1,240 @@
+const accounts = [
+{
+  owner :"fahim sarker",
+  movments : [2000,4000,-8000,-5000,2400,9000],
+  intetest : 1.7,
+  password: 1234,
+
+},
+{
+  owner :"sarker fahim",
+  movments : [5000, 4000, -8000, -5000, 2400, 9000],
+  intetest : 1.5,
+  password: 1234,
+},
+]
+
+const getWelcome = document.querySelector(".welcome");
+
+const containerApp= document.querySelector(".app");
+ 
+const labelBalance= document.querySelector(".balance-value");
+const containerMovments= document.querySelector(".movments");
+
+const summarryIn= document.querySelector(".summary-value-in");
+const summarryOut= document.querySelector(".summary-value-out");
+const summarryInter= document.querySelector(".summary-value-inter");
+    const inputLoan = document.querySelector(".form-input-loan-amount");    
+const loginUsername= document.querySelector(".login-input-username");
+const loginUserpass= document.querySelector(".login-input-password");
+const inputFormTo= document.querySelector(".form-input-to");
+const inputAmount= document.querySelector(".form-input-amount");
+
+const formInputUser= document.querySelector(".form-input-username");
+const formInputPass= document.querySelector(".form-input-pass");
+const timer= document.querySelector(".timer");
+
+const btnLogin= document.querySelector(".login-btn");
+
+const btnTransfer= document.querySelector(".form-btn-tranfer");
+const btnLoan= document.querySelector(".form-btn-loan");
+const btnClose= document.querySelector(".form-btn-close");
+const btnSort= document.querySelector(".btn-sort");
+
+
+
+
+
+////////////ui
+
+function updateui(currentAccount){
+
+displayMovments(currentAccount);
+displaySummarry(currentAccount);
+displayBalance(currentAccount);
+
+}
+
+
+
+
+
+
+
+/////////////
+///username
+
+function createUsername (accounts){
+ accounts.forEach(account =>{
+  account.username = account.owner
+                   .toLowerCase()
+                   .split(' ')
+                   .map(word => word.at(0))
+                   .join('')
+                     
+ });
+
+};
+createUsername(accounts);
+
+////login
+///////////////////////////////////
+
+let currentAccount;
+
+btnLogin.addEventListener('click',function(e){
+  e.preventDefault();
+  
+  currentAccount= accounts.find(account => account.username === loginUsername.value);
+  
+  if(currentAccount?.password === Number(loginUserpass.value) ){
+  //// display us and welcome
+  getWelcome.textContent= `welcome come back, ${currentAccount.owner
+                                            .split(' ')
+                                            .at(0)
+                                            }` 
+
+containerApp.style.opacity= 1;
+////ui
+ updateui(currentAccount);
+}
+ else{
+  getWelcome.textContent = " login faild, try again";
+  containerApp.style.opacity= 0;
+ }
+ //clear filed
+
+ loginUsername.value = loginUserpass.value = '';
+ loginUserpass.blur();
+  
+})
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////container momvment
+
+function displayMovments(account, sort = false){
+  containerMovments.innerHTML='';
+  const moves = sort?account.movments.slice(0).sort((a,b) => a-b) : account.movments;
+  moves.forEach((move,i)=>{
+   const type = move > 0 ? 'deposit': 'withdrwal';
+    const html = `<div class="movments-row">
+      <div class="movments-type  movments-type-${type}">${i+1} ${type}</div>
+      <div class="movments-date">5 DAYS AGO</div>
+      <div class="movments-valu">${move}$</div>
+    </div>`;
+   
+   containerMovments.insertAdjacentHTML('afterbegin',html);
+  });
+};
+
+
+//////////////////////
+///summarry
+
+function displaySummarry(account){
+  ///income
+  const income = account.movments.filter(move => move >0).reduce((deposite,acc) => deposite+acc,0);
+  summarryIn.textContent = `${income}$`;
+   ///outcome
+ 
+  const outcome = account.movments.filter(move => move <0).reduce((deposite,acc) => deposite+acc,0);
+  summarryOut.textContent = `${Math.abs(outcome)}$`
+ 
+  /////interesr
+  const inter = account.movments.filter(move => move>0).map(deposite => deposite * account.intetest /100).reduce((acc,interes)=> acc+interes,0);
+  summarryInter.textContent =`${inter}$`
+};
+
+function displayBalance(account){
+account.balance= account.movments.reduce((acc,move)=> acc+move,0);
+labelBalance.textContent=`${account.balance}$`;
+}
+
+
+btnTransfer.addEventListener('click',function(e){
+  e.preventDefault();
+  console.log("click");
+  const reciver = accounts.find(account =>
+    account.username === inputFormTo.value
+  );
+
+  const amount = Number(inputAmount.value);
+
+  if(amount >0  &&amount<= currentAccount.balance && currentAccount.username !== reciver.username && reciver){
+      ////transfer
+       currentAccount.movments.push(-amount);
+       reciver.movments.push(amount);
+       updateui(currentAccount);
+       ////msg
+      getWelcome.textContent = " transfer succesful";
+
+console.log(currentAccount);
+  }else{
+
+    getWelcome.textContent="faild";
+  };
+
+  //////clear fields
+  inputFormTo.value = inputAmount. value ='';
+  inputAmount.blur();
+
+})
+
+//////////////loan
+
+btnLoan.addEventListener('click',function(e){
+  e.preventDefault();
+
+  const loanAmount = Number(inputLoan.value);
+  if(loanAmount>0 && 
+    currentAccount.movments.some(move => move > loanAmount*0.1)){
+      ///loan
+       currentAccount.movments.push(loanAmount);
+      //uiupdate
+      updateui(currentAccount);
+      ///msg
+      getWelcome.textContent = " loan suceess"
+    }
+    else{
+      getWelcome.textContent = " loan faild"
+    }
+    /////clear fileds
+    inputLoan.value= "";
+    inputLoan.blur();
+
+});
+
+///////////////////////////////////////////////////////////////////////////////////////////////////close account
+btnClose.addEventListener('click',function(e){
+  e.preventDefault();
+if(currentAccount.username === formInputUser.value && currentAccount.password === Number(formInputPass.value)){
+ const index =  accounts.indexOf(account=> account.username === currentAccount.username);
+
+ //// close
+ accounts.slice(index,1);
+ ///ui
+ containerApp.style.opacity = 0;
+ ///msg
+ getWelcome.textContent= " close";
+}else{
+  getWelcome.textContent= " faild";
+}
+
+/////clear fields
+formInputPass.value = formInputUser.value = '';
+formInputPass.blur();
+})
+
+//////////////////////////////////////////////
+
+////////sort
+
+let sorten = false;
+
+btnSort.addEventListener('click',function(e){
+  e.preventDefault();
+  displayMovments(currentAccount, !sorten);
+
+ sorten =!sorten;
+})
